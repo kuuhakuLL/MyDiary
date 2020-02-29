@@ -6,11 +6,10 @@
     tools:context=".MonthFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Month"
-        android:textSize="32sp"
-        />
+        ></CalendarView>
 
 </FrameLayout>

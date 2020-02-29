@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class MonthFragment : Fragment() {
 
     override fun onCreateView(
@@ -17,8 +16,15 @@ class MonthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_month, container, false)
+        val fragmentMonth = inflater.inflate(R.layout.fragment_month, container, false)
+        val calendarView = fragmentMonth.findViewById<CalendarView>(R.id.calendarView)
+        
+        return fragmentMonth
     }
 
+
+    fun onSelectedDay(){
+
+    }
 
 }

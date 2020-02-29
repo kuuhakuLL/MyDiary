@@ -5,11 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".WeekFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Week"
-        android:textSize="32sp"/>
+        android:scrollbars="vertical">
+        <TableLayout
+            android:id="@+id/weekTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TableLayout>
+    </ScrollView>
 
 </FrameLayout>

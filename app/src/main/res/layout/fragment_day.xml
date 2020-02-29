@@ -4,13 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DayFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Day"
-        android:textSize="32sp"
-        />
-
+        android:scrollbars="vertical">
+        <TableLayout
+            android:id="@+id/dayTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5sp"
+                    android:textAlignment="center"
+                    android:text="Время">
+                </TextView>
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:padding="5sp"
+                    android:textAlignment="center"
+                    android:text="Рассписание">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_weight="2"
+                    android:textAlignment="center"
+                    android:padding="5sp"
+                    android:text="Замена">
+                </TextView>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 </FrameLayout>
