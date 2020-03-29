@@ -20,6 +20,7 @@ class TaskItemActivity : AppCompatActivity() {
         if(task != null ) {
             textName.text = task.name
             textDescription.text =task.description
+            textTimer.text = task.timer
         }
         else{
             Toast.makeText(applicationContext,"Произошла ошибка", Toast.LENGTH_SHORT).show()
