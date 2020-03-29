@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="screenBackgroundAdd">#4A4AC2</color>
-    <color name="textColor">#DDDDDD</color>
+    <color name="whiteTextColor">#DBDBDB</color>
+    <color name="blackTextColor">#232323</color>
 </resources>

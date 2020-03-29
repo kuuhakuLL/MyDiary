@@ -1,23 +1,19 @@
-package com.example.mydiary
+package com.example.mydiary.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import org.w3c.dom.DocumentFragment
+import com.example.mydiary.fragment.DayFragment
+import com.example.mydiary.fragment.MonthFragment
+import com.example.mydiary.fragment.WeekFragment
 
 class PagerAdapter(fragment: FragmentManager): FragmentPagerAdapter(fragment){
 
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0-> {
-                DayFragment()
-            }
-            1->{
-                WeekFragment()
-            }
-            else ->{
-                MonthFragment()
-            }
+            0 -> DayFragment()
+            1 -> WeekFragment()
+            else -> MonthFragment()
         }
     }
 

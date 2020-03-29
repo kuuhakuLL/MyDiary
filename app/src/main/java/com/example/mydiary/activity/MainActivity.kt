@@ -1,10 +1,12 @@
-package com.example.mydiary
+package com.example.mydiary.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.mydiary.adapters.PagerAdapter
+import com.example.mydiary.R
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -23,10 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onAdd(view: View){
-        val addActivity = Intent(this, Add::class.java)
-
-//        val currentPager = viewPager.getCurrentItem()
-//        addActivity.putExtra(Add.whatAdd, currentPager)
+        val addActivity = Intent(this, AddActivity::class.java)
         startActivity(addActivity)
     }
 }

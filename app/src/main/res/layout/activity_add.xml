@@ -5,12 +5,11 @@
     android:scrollbars="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Add">
+    tools:context=".activity.AddActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/screenBackgroundAdd">
-
         <EditText
             android:id="@+id/taskName"
             android:layout_width="match_parent"
@@ -25,19 +24,19 @@
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="top"
             android:textSize="24sp"
-            android:textColorHint="@color/textColor"
-            android:textColor="@color/textColor"/>
+            android:textColorHint="@color/whiteTextColor"
+            android:textColor="@color/whiteTextColor"/>
 
         <EditText
-            android:id="@+id/problemDescription"
+            android:id="@+id/taskDescription"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Описание задачи"
             android:inputType="textPersonName"
-            android:textColor="@color/textColor"
-            android:textColorHint="@color/textColor"
+            android:textColor="@color/whiteTextColor"
+            android:textColorHint="@color/whiteTextColor"
             android:textSize="24sp"
             android:gravity="top"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,90 +44,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
-
         <TimePicker
-            android:id="@+id/taskStartTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:timePickerMode="spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/problemDescription"
-            />
-
-        <Button
-            android:id="@+id/taskTimeToComplete"
+            android:id="@+id/taskStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/screenBackgroundAdd"
-            android:textColor="@color/textColor"
-            android:textColorHint="@color/textColor"
-            android:ems="10"
             android:gravity="center"
-            android:hint="Время на выполнение"
+            android:textSize="24sp"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskDescription" />
+
+        <TimePicker
+            android:id="@+id/taskTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:numbersSelectorColor="@color/whiteTextColor"
+            android:numbersInnerTextColor="@color/whiteTextColor"
+            android:gravity="center"
+            android:timePickerMode="spinner"
             android:inputType="time"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskStartTime" />
-
-        <TextView
-            android:id="@+id/labels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Метки"
-            android:textSize="24sp"
-            android:textColor="@color/textColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskTimeToComplete" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labels">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Работа" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Учеба" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Тренировка" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Творчество" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Домашние дела" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/taskStart" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Создать"
+            android:onClick="onAdd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
+            app:layout_constraintTop_toBottomOf="@+id/taskTimer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
