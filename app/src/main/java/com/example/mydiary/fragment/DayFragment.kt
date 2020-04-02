@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mydiary.R
-import com.example.mydiary.activity.TaskItemActivity
+import com.example.mydiary.activity.TaskActivity
 import com.example.mydiary.adapters.BaseAdapterCallback
 import com.example.mydiary.adapters.TaskAdapter
 import com.example.mydiary.helpers.DBHelper
-import com.example.mydiary.models.Task
 import com.example.mydiary.models.TaskDiffUtils
+import com.example.mydiary.models.TaskModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -31,21 +31,21 @@ class DayFragment : Fragment() {
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     var date: String = dateFormat.format(taskDate.time)
 
-    private var tasks: MutableList<Task> = ArrayList()
+    private var taskModels: MutableList<TaskModel> = ArrayList()
 
     private fun populateData(){
         var dbHelper = DBHelper(context)
-        tasks = dbHelper.getDayTasks(date)
-        tAdapter.setData(tasks)
-        tAdapter.attachCallback(object: BaseAdapterCallback<Task> {
-            override fun onItemClick(model: Task, v: View) {
+        taskModels = dbHelper.getDayTasks(date)
+        tAdapter.setData(taskModels)
+        tAdapter.attachCallback(object: BaseAdapterCallback<TaskModel> {
+            override fun onItemClick(model: TaskModel, v: View) {
                 openTask(model)
             }
         })
     }
 
-    fun openTask(model: Task){
-        val taskActivity = Intent(context, TaskItemActivity::class.java)
+    fun openTask(model: TaskModel){
+        val taskActivity = Intent(context, TaskActivity::class.java)
         taskActivity.putExtra("Task", model)
         startActivity(taskActivity)
     }

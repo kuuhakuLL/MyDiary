@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onAdd(view: View){
-        val addActivity = Intent(this, AddActivity::class.java)
+        val addActivity = Intent(this, AddTaskActivity::class.java)
         startActivity(addActivity)
     }
 }

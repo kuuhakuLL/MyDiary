@@ -5,7 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.mydiary.models.Task
+import com.example.mydiary.models.TaskModel
 
 class DBHelper(context: Context?) :
     SQLiteOpenHelper(
@@ -32,22 +32,22 @@ class DBHelper(context: Context?) :
         onCreate(db)
     }
 
-    fun addTask(task: Task):Boolean{
+    fun addTask(taskModel: TaskModel):Boolean{
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(KEY_NAME, task.name)
-        contentValues.put(KEY_DESCRIPTION, task.description)
-        contentValues.put(KEY_START, task.start)
-        contentValues.put(KEY_TIMER, task.timer)
-        contentValues.put(KEY_DATE, task.date)
+        contentValues.put(KEY_NAME, taskModel.name)
+        contentValues.put(KEY_DESCRIPTION, taskModel.description)
+        contentValues.put(KEY_START, taskModel.start)
+        contentValues.put(KEY_TIMER, taskModel.timer)
+        contentValues.put(KEY_DATE, taskModel.date)
         val success = db.insert(TABLE_TASKS, null, contentValues)
         db.close()
         return (Integer.parseInt("$success") != -1)
     }
 
-    fun getDayTasks(date:String): MutableList<Task>{
+    fun getDayTasks(date:String): MutableList<TaskModel>{
         val db = this.writableDatabase
-        var tasks: MutableList<Task> = ArrayList()
+        var taskModels: MutableList<TaskModel> = ArrayList()
         selection = "$KEY_DATE == ?"
         selectionArgs = arrayOf(date)
         orderBy = KEY_START
@@ -62,13 +62,13 @@ class DBHelper(context: Context?) :
                     var finish = cursor!!.getString(cursor!!.getColumnIndex(KEY_TIMER))
                     var date = cursor!!.getString(cursor!!.getColumnIndex(KEY_DATE))
 
-                    var task = Task(id, name, description, start, finish, date)
-                    tasks.add(task)
+                    var task = TaskModel(id, name, description, start, finish, date)
+                    taskModels.add(task)
 
                 } while (cursor!!.moveToNext())
             }
         }
-        return tasks
+        return taskModels
     }
 
 //    fun getTask(id: Int): Task? {
@@ -100,7 +100,5 @@ class DBHelper(context: Context?) :
         const val KEY_START = "Start"
         const val KEY_TIMER = "Timer"
         const val KEY_DATE = "Date"
-
-
     }
 }

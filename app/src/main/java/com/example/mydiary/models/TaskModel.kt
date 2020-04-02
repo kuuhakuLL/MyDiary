@@ -3,7 +3,7 @@ package com.example.mydiary.models
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Task(
+data class TaskModel(
     var id : Int ,
     var name: String,
     var description: String,
@@ -33,12 +33,12 @@ data class Task(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Task> {
-        override fun createFromParcel(parcel: Parcel): Task {
-            return Task(parcel)
+    companion object CREATOR : Parcelable.Creator<TaskModel> {
+        override fun createFromParcel(parcel: Parcel): TaskModel {
+            return TaskModel(parcel)
         }
 
-        override fun newArray(size: Int): Array<Task?> {
+        override fun newArray(size: Int): Array<TaskModel?> {
             return arrayOfNulls(size)
         }
     }
