@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_min"
             android:layout_marginStart="@dimen/margin_min"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@color/blackTextColor"
             />
         <TextView
@@ -25,7 +25,7 @@
             android:layout_marginTop="@dimen/margin_min"
             android:layout_marginStart="@dimen/fab_margin"
             android:textStyle="bold"
-            android:textSize="26sp"
+            android:textSize="@dimen/textSize"
             android:textColor="@color/blackTextColor"
             />
     </LinearLayout>

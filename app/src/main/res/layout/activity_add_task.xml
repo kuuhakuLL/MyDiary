@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/screenBackgroundAdd"
         android:orientation="vertical">
         <EditText
             android:id="@+id/taskName"
@@ -21,8 +20,8 @@
             android:hint="Название задачи"
             android:gravity="top"
             android:textSize="24sp"
-            android:textColorHint="@color/whiteTextColor"
-            android:textColor="@color/whiteTextColor"/>
+            android:textColorHint="@color/blackTextColor"
+            android:textColor="@color/blackTextColor"/>
 
         <EditText
             android:id="@+id/taskDescription"
@@ -32,8 +31,8 @@
             android:ems="10"
             android:hint="Описание задачи"
             android:inputType="textPersonName"
-            android:textColor="@color/whiteTextColor"
-            android:textColorHint="@color/whiteTextColor"
+            android:textColor="@color/blackTextColor"
+            android:textColorHint="@color/blackTextColor"
             android:textSize="24sp"
             android:gravity="top" />
 
@@ -67,6 +66,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fab_margin"
             android:text="Создать"
+            android:background="@color/colorPrimary"
             android:layout_gravity="center" />
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            android:id="@+id/cpvAdd"
+            android:layout_width="@dimen/cpv"
+            android:layout_height="@dimen/cpv"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:cpv_color="@color/colorPrimary"
+            app:cpv_animAutostart="true"
+            app:cpv_indeterminate="true" />
     </LinearLayout>
 </ScrollView>

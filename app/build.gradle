@@ -20,34 +20,61 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 
 dependencies {
+    implementation project(path: ':domain')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.android.support:recyclerview-v7'
     implementation 'com.android.support:design'
 
-    def nav_version = "1.0.0"
-    implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    def navVersion = "1.0.0"
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navVersion"
 
     //Moxy
     def moxyVersion = "2.1.2"
     implementation "com.github.moxy-community:moxy:$moxyVersion"
     implementation "com.github.moxy-community:moxy-android:$moxyVersion"
-    implementation "com.github.moxy-community:moxy-app-compat:$moxyVersion"
     implementation "com.github.moxy-community:moxy-androidx:$moxyVersion"
     kapt "com.github.moxy-community:moxy-compiler:$moxyVersion"
 
-    implementation project(path: ':domain')
+    //RxJava
+    def rxJavaVersion = "3.0.0"
+    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxJavaVersion"
+
+    //Circular progress view
+    def cpvVersion = '2.5.0'
+    implementation "com.github.rahatarmanahmed:circularprogressview:$cpvVersion"
+
+    def lifecycleVersion = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion"
+
+    //Room
+    def roomVersion = "2.2.5"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    implementation "androidx.room:room-guava:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    //Test
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation 'junit:junit:4.12'
 }

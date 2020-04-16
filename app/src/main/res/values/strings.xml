@@ -5,4 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_task_wrong_name_empty">Название задачи недолжно быть пустым</string>
     <string name="add_task_success">Задача успешно добавлена</string>
+    <string name="no_task_day">У вас еще ничего не запланировано на этот день</string>
+    <string name="error_open_task">Невозможно открыть задачу</string>
+    <string name="error_show_task">Невозможно открыть задачу</string>
 </resources>

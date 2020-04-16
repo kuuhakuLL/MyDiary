@@ -1,12 +1,12 @@
 package com.example.mydiary.views
 
-import moxy.MvpView
-import moxy.viewstate.strategy.OneExecutionStateStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import com.example.mydiary.models.Task
+import moxy.viewstate.strategy.alias.OneExecution
 
-@StateStrategyType(value =  OneExecutionStateStrategy::class)
-interface TaskView: MvpView {
-    fun loadTask()
-    fun showError(message: Int)
+@OneExecution
+interface TaskView: BaseView {
+    fun presentTask(task: Task)
+    fun startTimer(milliseconds: Long)
+    fun endTimer()
 
 }

@@ -1,13 +1,10 @@
 package com.example.mydiary.views
 
-import moxy.MvpView
-import moxy.viewstate.strategy.OneExecutionStateStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.alias.AddToEndSingle
 
-@StateStrategyType(value =  OneExecutionStateStrategy::class)
-interface AddTaskView: MvpView {
+@AddToEndSingle
+interface AddTaskView: BaseView {
     fun startSending()
     fun endSending()
-    fun showError(message: Int)
     fun showSuccess()
 }

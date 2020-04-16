@@ -17,8 +17,7 @@ class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
 //    lateinit var taskRepository: TaskRepository
 
     @InjectPresenter
-    lateinit var addTaskPersenter: AddTaskPresenter
-
+    lateinit var addTaskPresenter: AddTaskPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +29,7 @@ class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
     }
 
     fun onAdd(v: View){
+        //addTaskPresenter.addTask()
 //        var name: String = taskName?.text.toString()
 //        var description: String = taskDescription?.text.toString()
 //        var start = "${taskStart.hour}:${taskStart.minute}"
@@ -48,6 +48,7 @@ class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
     // View implementation
     override fun startSending() {
         btnAddTask.visibility = View.GONE
+        cpvAdd.visibility = View.VISIBLE
         taskName.isEnabled = false
         taskDescription.isEnabled = false
         taskStart.isEnabled = false
@@ -56,6 +57,7 @@ class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
 
     override fun endSending() {
         btnAddTask.visibility = View.VISIBLE
+        cpvAdd.visibility= View.GONE
         taskName.isEnabled = true
         taskDescription.isEnabled = true
         taskStart.isEnabled = true
@@ -68,6 +70,14 @@ class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
 
     override fun showSuccess() {
         Toast.makeText(applicationContext, R.string.add_task_success, Toast.LENGTH_SHORT)
+    }
+
+    override fun startLoad() {
+        TODO("Not yet implemented")
+    }
+
+    override fun endLoad() {
+        TODO("Not yet implemented")
     }
 
 }

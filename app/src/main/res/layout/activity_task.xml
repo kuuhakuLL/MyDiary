@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.TaskActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginHorizontal="@dimen/task_margin"
+            android:layout_marginVertical="@dimen/task_margin"
+            android:gravity="top"
+            android:textSize="24sp"
+            android:textColorHint="@color/blackTextColor"
+            android:textColor="@color/blackTextColor"/>
+
+        <TextView
+            android:id="@+id/txtTaskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:ems="10"
+            android:textSize="24sp"
+            android:layout_marginHorizontal="@dimen/task_margin"
+            android:gravity="top"
+            android:textColor="@color/blackTextColor"
+            android:textColorHint="@color/blackTextColor"/>
+
+        <com.example.mydiary.helpers.CountdownChronometer
+            android:id="@+id/chronometerTask"
+            android:format="%s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            />
+
+        <Button
+            android:id="@+id/btnTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnOnClick"
+            android:text="Старт"
+            android:layout_marginTop="@dimen/task_button_margin_top"
+            android:layout_gravity="center"
+            android:textSize="16sp"/>
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            android:id="@+id/cpvTask"
+            android:layout_width="@dimen/cpv"
+            android:layout_height="@dimen/cpv"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:cpv_color="@color/colorPrimary"
+            app:cpv_animAutostart="true"
+            app:cpv_indeterminate="true" />
+    </LinearLayout>
+</FrameLayout>
