@@ -4,7 +4,7 @@ import com.example.domain.models.Task
 
 interface TaskRepository {
     fun getTask()
-    fun getAllDayTask(data: String)
-    fun setTask(data: Task)
-    fun updateTask(data: Task)
+    fun getAllTaskFromDay(data: String)
+    fun insert(data: Task)
+    fun update(data: Task)
 }

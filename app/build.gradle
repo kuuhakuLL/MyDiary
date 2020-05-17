@@ -65,14 +65,6 @@ dependencies {
     def lifecycleVersion = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion"
 
-    //Room
-    def roomVersion = "2.2.5"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-    implementation "androidx.room:room-rxjava2:$roomVersion"
-    implementation "androidx.room:room-guava:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-
     //Test
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

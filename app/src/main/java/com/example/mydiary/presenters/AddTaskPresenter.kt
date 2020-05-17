@@ -1,13 +1,17 @@
 package com.example.mydiary.presenters
 
+import android.app.Application
 import android.os.Handler
+import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
 import com.example.mydiary.views.AddTaskView
 import moxy.InjectViewState
 import moxy.MvpPresenter
 
 @InjectViewState
-class AddTaskPresenter: MvpPresenter<AddTaskView>() {
+class AddTaskPresenter(application: Application): MvpPresenter<AddTaskView>() {
+
+    private val repository: TaskRepositoryApi = TaskRepositoryApi(application = application)
 
     fun addTask(name: String, description: String, start: String, timer: String, date: String){
         Handler().postDelayed({
