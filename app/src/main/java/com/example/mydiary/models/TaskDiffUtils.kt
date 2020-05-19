@@ -1,6 +1,7 @@
 package com.example.mydiary.models
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.domain.models.Task
 
 class TaskDiffUtils(private val oldList: List<Task>, private val newList: List<Task>): DiffUtil.Callback() {
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

@@ -1,6 +1,6 @@
 package com.example.mydiary.views
 
-import com.example.mydiary.models.Task
+import com.example.domain.models.Task
 import moxy.viewstate.strategy.alias.OneExecution
 
 @OneExecution

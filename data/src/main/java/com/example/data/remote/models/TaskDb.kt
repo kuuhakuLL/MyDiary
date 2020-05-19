@@ -13,6 +13,4 @@ class TaskDb(
     @ColumnInfo(name = "Start") val start: String,
     @ColumnInfo(name = "Timer") val timer: String,
     @ColumnInfo(name = "Date") val date: String
-) {
-
-}
+)

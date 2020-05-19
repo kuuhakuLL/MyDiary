@@ -55,8 +55,8 @@ dependencies {
 
     //RxJava
     def rxJavaVersion = "3.0.0"
-    implementation "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
-    implementation "io.reactivex.rxjava3:rxandroid:$rxJavaVersion"
+    implementation "io.reactivex.rxjava3:rxjava:2.2.5"
+    implementation "io.reactivex.rxjava3:rxandroid:2.2.5"
 
     //Circular progress view
     def cpvVersion = '2.5.0'

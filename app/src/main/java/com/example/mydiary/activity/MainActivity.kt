@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.adapters.PagerAdapter
 import com.example.mydiary.R
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var repositoryApi: TaskRepositoryApi
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        repositoryApi = TaskRepositoryApi(context = applicationContext)
         val viewPager = findViewById<ViewPager>(R.id.viewPager)
         if (viewPager != null) {
             val adapter = PagerAdapter(supportFragmentManager)

@@ -3,13 +3,16 @@ package com.example.mydiary.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.domain.models.Task
+import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
-import com.example.mydiary.models.Task
 import com.example.mydiary.presenters.TaskPresenter
 import com.example.mydiary.views.TaskView
 import kotlinx.android.synthetic.main.activity_task.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+import kotlin.math.log
 
 class TaskActivity : MvpAppCompatActivity(), TaskView {
     private val TAG = TaskActivity::class.java.simpleName
@@ -17,6 +20,11 @@ class TaskActivity : MvpAppCompatActivity(), TaskView {
     @InjectPresenter
     lateinit var taskPresenter: TaskPresenter
     private var isTimerOn = false
+
+    @ProvidePresenter
+    fun taskPresenter():TaskPresenter {
+      return TaskPresenter(TaskRepositoryApi(context = applicationContext))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

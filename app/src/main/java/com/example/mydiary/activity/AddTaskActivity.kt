@@ -3,12 +3,14 @@ package com.example.mydiary.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
 import com.example.mydiary.presenters.AddTaskPresenter
 import com.example.mydiary.views.AddTaskView
 import kotlinx.android.synthetic.main.activity_add_task.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 
 class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
 
@@ -18,6 +20,11 @@ class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
 
     @InjectPresenter
     lateinit var addTaskPresenter: AddTaskPresenter
+
+    @ProvidePresenter
+    fun addTaskPresenter(): AddTaskPresenter {
+        return AddTaskPresenter(TaskRepositoryApi(context = applicationContext))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

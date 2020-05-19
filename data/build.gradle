@@ -50,4 +50,9 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$roomVersion"
     implementation "androidx.room:room-guava:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
+
+    //RxJava
+    def rxJavaVersion = "3.0.0"
+    implementation "io.reactivex.rxjava3:rxjava:3.0.3"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxJavaVersion"
 }

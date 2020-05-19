@@ -7,14 +7,13 @@ import androidx.room.RoomDatabase
 import com.example.data.remote.dao.TaskDao
 import com.example.data.remote.models.TaskDb
 
-@Database(entities = arrayOf(TaskDb::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(TaskDb::class), version = 4, exportSchema = false)
 public abstract class TaskRoomDatabase: RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
+        // Singleton prevents multiple instances of database opening at the same time.
         @Volatile
         private var INSTANCE: TaskRoomDatabase? = null
 
@@ -25,7 +24,7 @@ public abstract class TaskRoomDatabase: RoomDatabase() {
             }
             synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    context,
                     TaskRoomDatabase::class.java,
                     "word_database"
                 ).build()

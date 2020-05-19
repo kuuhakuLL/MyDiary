@@ -10,10 +10,10 @@ import io.reactivex.Single
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM Task WHERE Date = :date")
-    fun getAllTaskFromDay(date: String): Single<List<TaskDb>>
+    fun getAllTaskFromDay(date: String): List<TaskDb>
 
     @Query("SELECT * FROM Task WHERE id = :id")
-    fun getTask(id: Int):Single<TaskDb>
+    fun getTask(id: Int):TaskDb
 
     @Insert
     fun insert(data: TaskDb)

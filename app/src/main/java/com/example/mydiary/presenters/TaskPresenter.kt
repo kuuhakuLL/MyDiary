@@ -1,14 +1,15 @@
 package com.example.mydiary.presenters
 
 import android.os.Handler
+import com.example.domain.models.Task
+import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
-import com.example.mydiary.models.Task
 import com.example.mydiary.views.TaskView
 import moxy.InjectViewState
 import moxy.MvpPresenter
 
 @InjectViewState
-class TaskPresenter(): MvpPresenter<TaskView>() {
+class TaskPresenter(private val repository: TaskRepositoryApi): MvpPresenter<TaskView>() {
 
     lateinit var  mTask: Task
 

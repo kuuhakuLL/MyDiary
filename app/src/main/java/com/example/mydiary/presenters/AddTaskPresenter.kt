@@ -9,9 +9,7 @@ import moxy.InjectViewState
 import moxy.MvpPresenter
 
 @InjectViewState
-class AddTaskPresenter(application: Application): MvpPresenter<AddTaskView>() {
-
-    private val repository: TaskRepositoryApi = TaskRepositoryApi(application = application)
+class AddTaskPresenter(private val repository: TaskRepositoryApi): MvpPresenter<AddTaskView>() {
 
     fun addTask(name: String, description: String, start: String, timer: String, date: String){
         Handler().postDelayed({

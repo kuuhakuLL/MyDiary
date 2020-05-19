@@ -8,4 +8,5 @@
     <string name="no_task_day">У вас еще ничего не запланировано на этот день</string>
     <string name="error_open_task">Невозможно открыть задачу</string>
     <string name="error_show_task">Невозможно открыть задачу</string>
+    <string name="error_connect_db">неудалось подключиться к базе данных</string>
 </resources>

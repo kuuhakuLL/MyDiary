@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.domain.models.Task
 import com.example.mydiary.R
-import com.example.mydiary.models.Task
 
 class TaskAdapter : BaseAdapter<Task>() {
 

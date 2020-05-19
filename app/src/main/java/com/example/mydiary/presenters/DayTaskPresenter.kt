@@ -1,17 +1,21 @@
 package com.example.mydiary.presenters
 
 import android.os.Handler
-import com.example.mydiary.models.Task
+import com.example.domain.models.Task
+import com.example.domain.repositories.implementations.TaskRepositoryApi
+import com.example.mydiary.R
 import com.example.mydiary.views.DayTaskView
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.InjectViewState
 import moxy.MvpPresenter
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.concurrent.thread
 
 @InjectViewState
-class DayTaskPresenter: MvpPresenter<DayTaskView>(){
+class DayTaskPresenter(val repository: TaskRepositoryApi): MvpPresenter<DayTaskView>(){
 
     private val taskDate = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -19,55 +23,17 @@ class DayTaskPresenter: MvpPresenter<DayTaskView>(){
 
     fun loadTasks(){
         viewState.startLoad()
-        val handler = Handler()
-        thread {
-            Thread.sleep(3000)
-            val mockData = ArrayList<Task>()
-            mockData.add(
-                    Task(
-                        0,
-                        "Test task 1",
-                        "Test description 1",
-                        "13:0",
-                        "0:10",
-                        "02.04.2020"
-                    )
-                )
-            mockData.add(
-                    Task(
-                        1,
-                        "Test task 2",
-                        "Test description 2",
-                        "13:10",
-                        "0:10",
-                        "02.04.2020"
-                    )
-                )
-            mockData.add(
-                    Task(
-                        2,
-                        "Test task 3",
-                        "Test description 3",
-                        "13:20",
-                        "0:10",
-                        "02.04.2020"
-                    )
-                )
-            mockData.add(
-                    Task(
-                        3,
-                        "Test task 4",
-                        "Test description 4",
-                        "13:30",
-                        "0:10",
-                        "02.04.2020"
-                    )
-                )
-            handler.post {
-                    viewState.endLoad()
-                    viewState.presetTasks(data = mockData)
-            }
-        }
+        val mData = repository.getAllTaskFromDay(date = "06.06.2020")
+        val dispose = mData.
+            subscribeOn(Schedulers.computation()).
+            observeOn(AndroidSchedulers.mainThread()).
+            subscribe({
+                viewState.presetTasks(it)
+            },{
+                viewState.showError(R.string.error_show_task)
+            },{
+                viewState.endLoad()
+            })
     }
 
     fun openTask(model: Task){
@@ -78,11 +44,28 @@ class DayTaskPresenter: MvpPresenter<DayTaskView>(){
         },500)
     }
 
+    fun errorConnectDb(){
+        viewState.showError(R.string.error_connect_db)
+    }
+
+//    fun getAllTaskFromDay(date: String): Flowable<List<Task>> {
+//        return Flowable.create({subscribe -> subscribe.onNext(listOf(
+//            Task("Test task 1","Test description 1",
+//                "13:0","0:10","06.06.2020"),
+//            Task("Test task 2", "Test description 2",
+//                "13:10","0:10","06.06.2020"),
+//            Task("Test task 3","Test description 3",
+//                "13:20","0:10","06.06.2020"),
+//            Task("Test task 4","Test description 4",
+//                "13:30","0:10","06.06.2020")))
+//            subscribe.onComplete()}, BackpressureStrategy.BUFFER)
+//        //return Flowable.just(taskConverter.fromDbToUi(taskDao.getAllTaskFromDay(date = date)))
+//    }
+
 //    private fun populateData(){
 //        var dbHelper = DBHelper(context)
 //        tasks = dbHelper.getDayTasks(date)
 //    }
-
 
 //    private fun updateTasks(){
 //        var dbHelper = DBHelper(context)
@@ -94,3 +77,4 @@ class DayTaskPresenter: MvpPresenter<DayTaskView>(){
 //        diffRezalt.dispatchUpdatesTo(tAdapter)
 //    }
 }
+
