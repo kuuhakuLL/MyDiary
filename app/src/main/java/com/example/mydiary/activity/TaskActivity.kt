@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_task.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import kotlin.math.log
 
 class TaskActivity : MvpAppCompatActivity(), TaskView {
     private val TAG = TaskActivity::class.java.simpleName
@@ -29,7 +28,11 @@ class TaskActivity : MvpAppCompatActivity(), TaskView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
-        taskPresenter.fetchTask(intent?.getParcelableExtra("Task"))
+        val model : Task? = intent?.getParcelableExtra("Task")
+          if (model != null)
+            taskPresenter.fetchTask(model)
+        else
+            taskPresenter.openError()
     }
 
     fun btnOnClick(v :View){
@@ -44,7 +47,6 @@ class TaskActivity : MvpAppCompatActivity(), TaskView {
         val timer = task.timer.split(':')
         val milliseconds = 60000*(timer[0].toLong()*60+timer[1].toLong())
         chronometerTask.base = System.currentTimeMillis() + milliseconds
-//        .base = SystemClock.elapsedRealtime()
     }
 
     override fun startLoad() {

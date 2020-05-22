@@ -17,19 +17,21 @@ data class Task(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString()) {
+        parcel.readString().toString()
+    ) {
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(description)
-        parcel.writeString(start)
-        parcel.writeString(timer)
-        parcel.writeString(date)
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeInt(id)
+        dest?.writeString(name)
+        dest?.writeString(description)
+        dest?.writeString(start)
+        dest?.writeString(timer)
+        dest?.writeString(date)
     }
 
     override fun describeContents(): Int {
-        return 0
+        return 0;
     }
 
     companion object CREATOR : Parcelable.Creator<Task> {
@@ -41,5 +43,4 @@ data class Task(
             return arrayOfNulls(size)
         }
     }
-
 }

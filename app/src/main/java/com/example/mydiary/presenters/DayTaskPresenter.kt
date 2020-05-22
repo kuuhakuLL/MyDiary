@@ -1,12 +1,10 @@
 package com.example.mydiary.presenters
 
-import android.os.Handler
 import com.example.domain.models.Task
 import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
 import com.example.mydiary.views.DayTaskView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.InjectViewState
@@ -16,32 +14,46 @@ import java.util.*
 
 @InjectViewState
 class DayTaskPresenter(val repository: TaskRepositoryApi): MvpPresenter<DayTaskView>(){
+    private val TAG = DayTaskPresenter::class.java.simpleName
 
     private val taskDate = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private lateinit var mData: Flowable<List<Task>>
     var date: String = dateFormat.format(taskDate.time)
 
     fun loadTasks(){
         viewState.startLoad()
-        val mData = repository.getAllTaskFromDay(date = "06.06.2020")
+        mData = repository.getAllTaskFromDay(date = "06.06.2020")
         val dispose = mData.
-            subscribeOn(Schedulers.computation()).
-            observeOn(AndroidSchedulers.mainThread()).
-            subscribe({
-                viewState.presetTasks(it)
-            },{
-                viewState.showError(R.string.error_show_task)
-            },{
-                viewState.endLoad()
-            })
+                subscribeOn(Schedulers.computation()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe({
+                    viewState.presetTasks(it)
+                },{
+                    viewState.showError(R.string.error_show_task)
+                },{
+                    viewState.endLoad()
+                })
+    }
+
+    fun resumeTasks(){
+        viewState.startLoad()
+        mData.subscribeOn(Schedulers.computation()).
+        observeOn(AndroidSchedulers.mainThread()).
+        subscribe({
+            viewState.presetTasks(it)
+
+        },{
+            viewState.showError(R.string.error_show_task)
+        },{
+            viewState.endLoad()
+        })
     }
 
     fun openTask(model: Task){
         viewState.startLoad()
-        Handler().postDelayed({
-            viewState.endLoad()
-            viewState.openTask(model)
-        },500)
+        viewState.openTask(model)
+        viewState.endLoad()
     }
 
     fun errorConnectDb(){

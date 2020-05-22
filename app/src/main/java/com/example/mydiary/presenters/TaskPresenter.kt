@@ -1,6 +1,5 @@
 package com.example.mydiary.presenters
 
-import android.os.Handler
 import com.example.domain.models.Task
 import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
@@ -15,13 +14,13 @@ class TaskPresenter(private val repository: TaskRepositoryApi): MvpPresenter<Tas
 
     fun fetchTask(data: Task?) {
         viewState.startLoad()
-        Handler().postDelayed({
-            if (data!= null) {
-                mTask = data
-                viewState.presentTask(mTask)
-            }
-            else viewState.showError(R.string.error_show_task)
-        },500)
+        if (data!= null) {
+            mTask = data
+            viewState.presentTask(mTask)
+        }
+        else{
+            viewState.showError(R.string.error_show_task)
+        }
         viewState.endLoad()
     }
 
@@ -32,6 +31,10 @@ class TaskPresenter(private val repository: TaskRepositoryApi): MvpPresenter<Tas
             viewState.startTimer(milliseconds = milliseconds)
         }
         else viewState.endTimer()
+    }
+
+    fun openError(){
+        viewState.showError(R.string.error_show_task)
     }
 
 }

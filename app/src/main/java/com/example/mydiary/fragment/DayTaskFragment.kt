@@ -2,6 +2,7 @@ package com.example.mydiary.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +27,13 @@ import moxy.presenter.ProvidePresenter
  * A simple [Fragment] subclass.
  **/
 class DayTaskFragment : MvpAppCompatFragment(), DayTaskView {
+    private val TAG = DayTaskFragment::class.java.simpleName
 
     @InjectPresenter
     lateinit var mDayTaskPresenter: DayTaskPresenter
     lateinit var taskRepositoryApi: TaskRepositoryApi
     private var mAdapter = TaskAdapter()
     private lateinit var recyclerDayTask : RecyclerView
-
 
     @ProvidePresenter
     fun mDayTaskPresenter(): DayTaskPresenter {
@@ -69,6 +70,11 @@ class DayTaskFragment : MvpAppCompatFragment(), DayTaskView {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        mDayTaskPresenter.resumeTasks()
+    }
+
     override fun presentNoTask() {
         cpvDayTask.visibility = View.GONE
         txtDayTaskNoTask.visibility = View.VISIBLE
@@ -77,6 +83,7 @@ class DayTaskFragment : MvpAppCompatFragment(), DayTaskView {
     override fun openTask(model: Task) {
         val taskActivity = Intent(context, TaskActivity::class.java)
         taskActivity.putExtra("Task", model)
+        Log.d(TAG,"$model,\n $taskActivity")
         startActivity(taskActivity)
     }
 

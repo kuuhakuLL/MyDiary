@@ -3,6 +3,7 @@ package com.example.mydiary.activity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.domain.repositories.implementations.TaskRepository
 import com.example.domain.repositories.implementations.TaskRepositoryApi
 import com.example.mydiary.R
 import com.example.mydiary.presenters.AddTaskPresenter
@@ -11,12 +12,14 @@ import kotlinx.android.synthetic.main.activity_add_task.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddTaskActivity: MvpAppCompatActivity(), AddTaskView{
 
-//    private val taskDate: Calendar = Calendar.getInstance()
-//    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-//    lateinit var taskRepository: TaskRepository
+    private val taskDate: Calendar = Calendar.getInstance()
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+    lateinit var taskRepository: TaskRepository
 
     @InjectPresenter
     lateinit var addTaskPresenter: AddTaskPresenter
