@@ -14,8 +14,13 @@ class TaskRepositoryApi(context: Context): TaskRepository {
     private val taskConverter = TaskConverter()
     private val taskDao = TaskRoomDatabase.getDatabase(context).taskDao()
 
-    override fun getTask() {
-        TODO("Not yet implemented")
+    override fun getTask():Flowable<Task> {
+        return Flowable.create({subscribe ->
+            subscribe.onNext(Task(0,"Test task 1","Test description 1",
+                "13:0","0:10","06.06.2020"))
+            subscribe.onComplete()
+        }, BackpressureStrategy.BUFFER)
+//        return  Flowable.just(taskConverter.fromDbToUi(taskDao.getTask()))
     }
 
     override fun getAllTaskFromDay(date: String): Flowable<List<Task>> {

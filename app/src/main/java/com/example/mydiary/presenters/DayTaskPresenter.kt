@@ -24,16 +24,16 @@ class DayTaskPresenter(val repository: TaskRepositoryApi): MvpPresenter<DayTaskV
     fun loadTasks(){
         viewState.startLoad()
         mData = repository.getAllTaskFromDay(date = "06.06.2020")
-        val dispose = mData.
-                subscribeOn(Schedulers.computation()).
-                observeOn(AndroidSchedulers.mainThread()).
-                subscribe({
-                    viewState.presetTasks(it)
-                },{
-                    viewState.showError(R.string.error_show_task)
-                },{
-                    viewState.endLoad()
-                })
+        mData.
+        subscribeOn(Schedulers.computation()).
+        observeOn(AndroidSchedulers.mainThread()).
+        subscribe({
+            viewState.presetTasks(it)
+        },{
+            viewState.showError(R.string.error_show_task)
+        },{
+            viewState.endLoad()
+        })
     }
 
     fun resumeTasks(){
@@ -42,7 +42,6 @@ class DayTaskPresenter(val repository: TaskRepositoryApi): MvpPresenter<DayTaskV
         observeOn(AndroidSchedulers.mainThread()).
         subscribe({
             viewState.presetTasks(it)
-
         },{
             viewState.showError(R.string.error_show_task)
         },{
@@ -57,6 +56,7 @@ class DayTaskPresenter(val repository: TaskRepositoryApi): MvpPresenter<DayTaskV
     }
 
     fun errorConnectDb(){
+
         viewState.showError(R.string.error_connect_db)
     }
 
